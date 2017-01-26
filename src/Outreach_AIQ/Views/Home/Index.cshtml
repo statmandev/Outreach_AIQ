@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+@*
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -106,4 +106,84 @@
             <li><a href="http://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
         </ul>
     </div>
+</div>
+*@
+
+<div>
+    <form action="getQuote" method="POST">
+        <table class="quoteInformation" id="mainTableWidth">
+            <tr>
+                <td colspan="2" style="text-align: center;"><h1>Welcome to Outreach Automotive Insurance!</h1><h1>Get a free quote now!</h1></td>
+            </tr>
+            <tr>
+                <td><p>Simply enter some required information below. No account necessary! Once you have entered the required information, simply click the "Get Quote!" button.</p></td>
+                <td><p>This information is optional and will remain between visits for 24 hours should you decide to purchase a plan.</p></td>
+            </tr>
+            <tr>
+                <td>
+                    <table id="premiumInformation">
+                        <tr>
+                            <td>Driver Age:</td>
+                            <td><input name="Age" type="text" placeholder="Age" required /></td>
+                        </tr>
+                        <tr>
+                            <td>Driver Zip Code:</td>
+                            <td><input name="ZipCode" type="text" placeholder="Zip Code" required /></td>
+                        </tr>
+                        <tr>
+                            <td>Annual Mileage:</td>
+                            <td><input name="Mileage" type="text" placeholder="Mileage" required /></td>
+                        </tr>
+                        <tr>
+                            <td>Vehicle Year:</td>
+                            <td><input name="Year" type="text" placeholder="Year" required /></td>
+                        </tr>
+                        <tr>
+                            <td>Vehicle Make:</td>
+                            <td>
+                                <select name="Make" required>
+                                    <option value="">Please Choose</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Vehicle Model:</td>
+                            <td>
+                                <select name="Model" required>
+                                    <option value="">Please Choose</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table id="driverInformation">
+                        <tr>
+                            <td>First Name:</td>
+                            <td><input name="FirstName" type="text" placeholder="First Name" /></td>
+                        </tr>
+                        <tr>
+                            <td>Last Name:</td>
+                            <td><input name="LastName" type="text" placeholder="Last Name" /></td>
+                        </tr>
+                        <tr>
+                            <td>Address:</td>
+                            <td><input name="Address" type="text" placeholder="Address" /></td>
+                        </tr>
+                        <tr>
+                            <td>City:</td>
+                            <td><input name="City" type="text" placeholder="City" /></td>
+                        </tr>
+                        <tr>
+                            <td>State:</td>
+                            <td><input name="State" type="text" placeholder="State" /></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center; padding-top: 5px;"><input type="submit" name="userAction" value="Get Quote!" />&nbsp;&nbsp;&nbsp;&nbsp; Your Quote: $</td>
+            </tr>
+        </table>
+    </form>
 </div>

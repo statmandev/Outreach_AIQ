@@ -1,5 +1,27 @@
-﻿body {
-    padding-top: 50px;
+﻿/* ----------------- MY CUSTOM CSS -----------------*/
+table.quoteInformation td {
+	border: 2px solid #000000;
+	vertical-align: top;
+	padding: 5px;
+}
+
+table#premiumInformation td {
+	border: 0px solid #0000FF;
+	padding: 0px;
+}
+
+table#driverInformation td {
+	border: 0px solid #000000;
+	padding: 0px;
+}
+
+.quoteInformation#mainTableWidth td {
+	width: 50%;
+}
+/* --------------- END MY CUSTOM CSS ---------------*/
+
+body {
+    padding-top: 55px;
     padding-bottom: 20px;
 }
 
