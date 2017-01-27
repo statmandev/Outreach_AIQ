@@ -109,8 +109,25 @@
 </div>
 *@
 
+@* namespace containing Quote class *@
+@using Outreach_AIQ.Models
+
+@* Notify Index View that the object (model) returned from Controller is a Quote object *@
+@model Outreach_AIQ.Models.Quote
+
+@* Rendered when shared layout calls RenderBody() *@
 <div>
-    <form action="getQuote" method="POST">
+    @* test whether data was sent and retrieved from controller *@
+    <p>Age: @Model.Age</p><br />
+    <p>Zip Code: @Model.ZipCode</p><br />
+    <p>Mileage: @Model.Mileage</p><br />
+    <p>Year: @Model.Year</p><br />
+    <p>Make: @Model.Make</p><br />
+    <p>Model: @Model.Model</p><br />
+
+    @* create form to pass Post data to controller *@
+    @using (Html.BeginForm("Index", "Home"))
+    {
         <table class="quoteInformation" id="mainTableWidth">
             <tr>
                 <td colspan="2" style="text-align: center;"><h1>Welcome to Outreach Automotive Insurance!</h1><h1>Get a free quote now!</h1></td>
@@ -143,6 +160,7 @@
                             <td>
                                 <select name="Make" required>
                                     <option value="">Please Choose</option>
+                                    <option value="Chevrolet">Chevrolet</option>
                                 </select>
                             </td>
                         </tr>
@@ -151,6 +169,7 @@
                             <td>
                                 <select name="Model" required>
                                     <option value="">Please Choose</option>
+                                    <option value="Trailblazer">Trailblazer</option>
                                 </select>
                             </td>
                         </tr>
@@ -182,8 +201,10 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style="text-align: center; padding-top: 5px;"><input type="submit" name="userAction" value="Get Quote!" />&nbsp;&nbsp;&nbsp;&nbsp; Your Quote: $</td>
+                <td colspan="2" style="text-align: center; padding-top: 5px;">
+                    <input type="submit" value="Get Quote!" />&nbsp;&nbsp;&nbsp;&nbsp;Your Quote: $@Model.Premium per year.
+                </td>
             </tr>
         </table>
-    </form>
+    }
 </div>
