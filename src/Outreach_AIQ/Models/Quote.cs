@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Outreach_AIQ.Models
 {
-    public class Quote
+	public class Quote
     {
 		public int Age { get; set; }
 		public int ZipCode { get; set; }
@@ -14,5 +14,10 @@ namespace Outreach_AIQ.Models
 		public string Make { get; set; }
 		public string Model { get; set; }
 		public int Premium { get; set; }
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+		public string Address { get; set; }
+		public string City { get; set; }
+		public string State { get; set; }
 	}
 }
