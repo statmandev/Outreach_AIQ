@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Admin";
+}
+
+@* namespace containing AIQ_Database class *@
+@using Outreach_AIQ.Models
+
+@* Notify Admin View that the object (model) returned from Controller is a VehicleInformation object *@
+@model IEnumerable<Outreach_AIQ.Models.VehicleInformation>
+
+@* Rendered when shared layout calls RenderBody() *@
+<h2>Welcome to the administrator page!</h2>
+
+<div>
+    @{ var num = 0; }
+    @if (num == 1)
+    {
+        <h3>Login below to add makes and models to the database.</h3>
+
+        @* create form to pass Post data to controller *@
+        @using (Html.BeginForm("Admin", "Admin"))
+        {
+            <table class="quoteInformation">
+                <tr>
+                    <td>Login:</td>
+                    <td><input name="UserName" type="text" placeholder="User Name" /></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input name="Password" type="text" placeholder="Password" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;"><input type="submit" value="Login" /></td>
+                </tr>
+            </table>
+        }
+    }
+    else
+    {
+        <h3>Type in a make and model to add it to the database or delete existing ones from the list.</h3>
+
+        @* create form to pass Post data to controller *@
+        @using (Html.BeginForm("Admin", "Admin"))
+        {
+            <table class="quoteInformation">
+                <tr>
+                    <td>Make:</td>
+                    <td><input name="Make" type="text" placeholder="Make" /></td>
+                </tr>
+                <tr>
+                    <td>Model:</td>
+                    <td><input name="Model" type="text" placeholder="Model" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;"><input type="submit" value="Add Vehicle" /></td>
+                </tr>
+            </table>
+
+            <br />
+
+            <table class="quoteInformation">
+                <tr>
+                    <td>User ID</td>
+                    <td>Username</td>
+                    <td>Password</td>
+                    <td>Delete?</td>
+                </tr>
+                @{ int i = 0; }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Vehicle_ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Make)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </td>
+                        <td style="text-align: center;">
+                            <input type="checkbox" name="chkBox@(i)" />
+                            <input type="hidden" name="hiddenID@(i)" value="@item.Vehicle_ID" />
+                            <input type="hidden" name="hiddenMake@(i)" value="@item.Make" />
+                            <input type="hidden" name="hiddenModel@(i)" value="@item.Model" />
+                        </td>
+                    </tr>
+                    i++;
+                }
+                <tr>
+                    <td colspan="4" style="text-align: center;"><input type="submit" value="Delete Vehicle" /></td>
+                </tr>
+            </table>
+        }
+    }
+</div>

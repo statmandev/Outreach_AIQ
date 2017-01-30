@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic; 
+using System.Linq;
 using Microsoft.AspNetCore.Mvc; // main namespace
 using Outreach_AIQ.Models; // models folder containing custom Quote class
 
@@ -6,9 +8,26 @@ namespace Outreach_AIQ.Controllers
 {
 	public class HomeController : Controller
     {
-		// Get Method
+		private AIQ_Database _dbModel;
+
+		public HomeController(AIQ_Database dbModel)
+		{
+			_dbModel = dbModel;
+		}
+
+		// GET Method
 		public IActionResult Index()
 		{
+			List<string> makes = new List<string> { };
+			List<string> models = new List<string> { };
+			foreach (VehicleInformation tableRow in _dbModel.VehicleInformation.ToList())
+			{
+				makes.Add(tableRow.Make);
+				models.Add(tableRow.Model);
+			}
+			ViewData["Makes"] = makes;
+			ViewData["Models"] = models;
+
 			// initialize Quote model object when default page loads
 			Quote quote = new Quote
 			{
@@ -48,7 +67,7 @@ namespace Outreach_AIQ.Controllers
 			return View(quote);
 		}
 
-		// Post Method
+		// POST Method
 		[HttpPost]
 		public IActionResult Index(Quote model) // pass the model object to set its member variables
         {
@@ -171,8 +190,8 @@ namespace Outreach_AIQ.Controllers
 
 			return View(model);
         }
-		
-        public IActionResult About()
+
+		public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
 

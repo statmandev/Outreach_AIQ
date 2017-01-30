@@ -10,6 +10,8 @@
 
 @* Rendered when shared layout calls RenderBody() *@
 <div>
+    <h1>@ViewData["Makes"]</h1>
+    <h1>@ViewData["Models"]</h1>
     @* create form to pass Post data to controller *@
     @using (Html.BeginForm("Index", "Home"))
     {
