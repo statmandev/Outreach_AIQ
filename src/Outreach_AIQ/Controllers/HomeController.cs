@@ -8,8 +8,8 @@ namespace Outreach_AIQ.Controllers
 {
 	public class HomeController : Controller
     {
+		// load database context
 		private AIQ_Database _dbModel;
-
 		public HomeController(AIQ_Database dbModel)
 		{
 			_dbModel = dbModel;
@@ -18,6 +18,7 @@ namespace Outreach_AIQ.Controllers
 		// GET Method
 		public IActionResult Index()
 		{
+			// load vehicle information from database context and save to viewdata for use on view
 			List<string> makes = new List<string> { };
 			List<string> models = new List<string> { };
 			foreach (VehicleInformation tableRow in _dbModel.VehicleInformation.ToList())
@@ -25,8 +26,8 @@ namespace Outreach_AIQ.Controllers
 				makes.Add(tableRow.Make);
 				models.Add(tableRow.Model);
 			}
-			ViewData["Makes"] = makes;
-			ViewData["Models"] = models;
+			ViewData["Makes"] = makes.Distinct();
+			ViewData["Models"] = models.Distinct();
 
 			// initialize Quote model object when default page loads
 			Quote quote = new Quote
@@ -71,6 +72,17 @@ namespace Outreach_AIQ.Controllers
 		[HttpPost]
 		public IActionResult Index(Quote model) // pass the model object to set its member variables
         {
+			// load vehicle information from database context and save to viewdata for use on view
+			List<string> makes = new List<string> { };
+			List<string> models = new List<string> { };
+			foreach (VehicleInformation tableRow in _dbModel.VehicleInformation.ToList())
+			{
+				makes.Add(tableRow.Make);
+				models.Add(tableRow.Model);
+			}
+			ViewData["Makes"] = makes.Distinct();
+			ViewData["Models"] = models.Distinct();
+
 			// gather form data and store values to Quote model
 			int temp = 0; // initialize temp int to hold age since we cannot use a reference of model.Age during string conversion
 

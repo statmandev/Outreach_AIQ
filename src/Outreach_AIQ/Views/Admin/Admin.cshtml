@@ -12,30 +12,12 @@
 <h2>Welcome to the administrator page!</h2>
 
 <div>
-    @{ var num = 0; }
-    @if (num == 1)
-    {
-        <h3>Login below to add makes and models to the database.</h3>
-
-        @* create form to pass Post data to controller *@
-        @using (Html.BeginForm("Admin", "Admin"))
-        {
-            <table class="quoteInformation">
-                <tr>
-                    <td>Login:</td>
-                    <td><input name="UserName" type="text" placeholder="User Name" /></td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input name="Password" type="text" placeholder="Password" /></td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align: center;"><input type="submit" value="Login" /></td>
-                </tr>
-            </table>
-        }
+    @{
+        int num = 0;
+        int.TryParse(ViewData["loginID"].ToString(), out num);
     }
-    else
+    
+    @if (num == 1)
     {
         <h3>Type in a make and model to add it to the database or delete existing ones from the list.</h3>
 
@@ -57,7 +39,10 @@
             </table>
 
             <br />
+        }
 
+        @using (Html.BeginForm("Admin", "Admin"))
+        {
             <table class="quoteInformation">
                 <tr>
                     <td>User ID</td>
@@ -84,11 +69,45 @@
                             <input type="hidden" name="hiddenMake@(i)" value="@item.Make" />
                             <input type="hidden" name="hiddenModel@(i)" value="@item.Model" />
                         </td>
-                    </tr>
-                    i++;
+                    </tr>i++;
                 }
                 <tr>
                     <td colspan="4" style="text-align: center;"><input type="submit" value="Delete Vehicle" /></td>
+                </tr>
+            </table>
+            <br />
+        }
+
+        @using (Html.BeginForm("Admin", "Admin"))
+        {
+            <table class="quoteInformation">
+                <tr>
+                    <td>
+                        <input type="submit" value="Logout" />
+                        <input type="hidden" name="logout" value="logout" />
+                    </td>
+                </tr>
+            </table>
+        }
+    }
+    else
+    {
+        <h3>Login below to add makes and models to the database.</h3>
+
+        @* create form to pass Post data to controller *@
+        @using (Html.BeginForm("Admin", "Admin"))
+        {
+            <table class="quoteInformation">
+                <tr>
+                    <td>Login:</td>
+                    <td><input name="UserName" type="text" placeholder="User Name" /></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input name="Password" type="text" placeholder="Password" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;"><input type="submit" value="Login" /></td>
                 </tr>
             </table>
         }

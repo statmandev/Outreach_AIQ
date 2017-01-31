@@ -8,10 +8,13 @@
 @* Notify Index View that the object (model) returned from Controller is a Quote object *@
 @model Outreach_AIQ.Models.Quote
 
+@{
+    IEnumerable<string> makes = ViewData["Makes"] as IEnumerable<string>;
+    IEnumerable<string> vmodels = ViewData["Models"] as IEnumerable<string>;
+}
+
 @* Rendered when shared layout calls RenderBody() *@
 <div>
-    <h1>@ViewData["Makes"]</h1>
-    <h1>@ViewData["Models"]</h1>
     @* create form to pass Post data to controller *@
     @using (Html.BeginForm("Index", "Home"))
     {
@@ -47,7 +50,10 @@
                             <td>
                                 <select name="Make" >
                                     <option value="">Please Choose</option>
-                                    <option value="Chevrolet">Chevrolet</option>
+                                    @foreach (string make in makes)
+                                    {
+                                        <option value="@make">@make</option>
+                                    }
                                 </select>
                             </td>
                         </tr>
@@ -56,7 +62,10 @@
                             <td>
                                 <select name="Model" >
                                     <option value="">Please Choose</option>
-                                    <option value="Trailblazer">Trailblazer</option>
+                                    @foreach (string vmodel in vmodels)
+                                    {
+                                        <option value="@vmodel">@vmodel</option>
+                                    }
                                 </select>
                             </td>
                         </tr>
