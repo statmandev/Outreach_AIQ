@@ -26,6 +26,8 @@ namespace Outreach_AIQ.Controllers
 				makes.Add(tableRow.Make);
 				models.Add(tableRow.Model);
 			}
+			makes.Sort();
+			models.Sort();
 			ViewData["Makes"] = makes.Distinct();
 			ViewData["Models"] = models.Distinct();
 
@@ -80,6 +82,8 @@ namespace Outreach_AIQ.Controllers
 				makes.Add(tableRow.Make);
 				models.Add(tableRow.Model);
 			}
+			makes.Sort();
+			models.Sort();
 			ViewData["Makes"] = makes.Distinct();
 			ViewData["Models"] = models.Distinct();
 
@@ -101,8 +105,61 @@ namespace Outreach_AIQ.Controllers
 			model.Make = Request.Form["Make"];
 			model.Model = Request.Form["Model"];
 
-			// calculate annual premium
-			model.Premium = 100;
+			// calculate annual premium based on arbitrary conditions
+			// in a real web application these conditions would reflect actual pricing
+			if (model.Age >= 16) // if the driver is 16 or over
+			{
+				model.Premium += 100;
+			}
+			else
+			{
+				model.Premium += 1000;
+			}
+
+			if (model.ZipCode > 49999) // if zip code is in top half of the range of zip codes
+			{
+				model.Premium += 100;
+			}
+			else
+			{
+				model.Premium += 200;
+			}
+
+			if (model.Mileage >= 30000) // if the driver drives 30000 miles per year or more
+			{
+				model.Premium += 1000;
+			}
+			else
+			{
+				model.Premium += 100;
+			}
+
+			if (model.Year > 1997) // if the vehicle is less than 20 years old
+			{
+				model.Premium += 100;
+			}
+			else
+			{
+				model.Premium += 350;
+			}
+
+			if (model.Make == "Pontiac") // if the vehicle make is a Pontiac
+			{
+				model.Premium += 0;
+			}
+			else
+			{
+				model.Premium += 10000;
+			}
+
+			if (model.Model == "Bonneville") // if the vehicle make is a Bonneville
+			{
+				model.Premium += 0;
+			}
+			else
+			{
+				model.Premium += 635;
+			}
 
 			// update current model values and cookies to retain form driver data after submission
 			if (!string.IsNullOrWhiteSpace(Request.Form["FirstName"])) // if input is not null, whitespace, or empty

@@ -31,24 +31,24 @@
                     <table id="premiumInformation">
                         <tr>
                             <td>Driver Age:</td>
-                            <td><input name="Age" type="text" placeholder="Age"  /></td>
+                            <td><input name="Age" type="text" placeholder="Age" required /></td>
                         </tr>
                         <tr>
                             <td>Driver Zip Code:</td>
-                            <td><input name="ZipCode" type="text" placeholder="Zip Code"  /></td>
+                            <td><input name="ZipCode" type="text" placeholder="Zip Code" required /></td>
                         </tr>
                         <tr>
                             <td>Annual Mileage:</td>
-                            <td><input name="Mileage" type="text" placeholder="Mileage"  /></td>
+                            <td><input name="Mileage" type="text" placeholder="Mileage" required /></td>
                         </tr>
                         <tr>
                             <td>Vehicle Year:</td>
-                            <td><input name="Year" type="text" placeholder="Year"  /></td>
+                            <td><input name="Year" type="text" placeholder="Year" required /></td>
                         </tr>
                         <tr>
                             <td>Vehicle Make:</td>
                             <td>
-                                <select name="Make" >
+                                <select name="Make" required>
                                     <option value="">Please Choose</option>
                                     @foreach (string make in makes)
                                     {
@@ -60,7 +60,7 @@
                         <tr>
                             <td>Vehicle Model:</td>
                             <td>
-                                <select name="Model" >
+                                <select name="Model" required>
                                     <option value="">Please Choose</option>
                                     @foreach (string vmodel in vmodels)
                                     {
