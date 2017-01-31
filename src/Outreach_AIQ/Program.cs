@@ -14,7 +14,8 @@ namespace Outreach_AIQ
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
+				.UseUrls("http://localhost:5000", "http://0.0.0.0:5000")
+				.UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
 
